@@ -1,3 +1,7 @@
+*, *::after, *::before {
+    box-sizing: border-box;
+}
+
 body {
     height: 100vh;
     display: flex;
@@ -17,4 +21,10 @@ div {
     font-size: 8vmin;
     text-align: center;
     vertical-align: middle;
+}
+
+#restartButton {
+    display: flex;
+    align-content: center;
+    justify-content: center;
 }
