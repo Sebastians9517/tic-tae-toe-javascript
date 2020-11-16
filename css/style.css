@@ -36,6 +36,21 @@ body {
 		background-position: 0% 50%;
 	}
 }
+@-webkit-keyframes AnimationName {
+    0%{background-position:96% 0%}
+    50%{background-position:5% 100%}
+    100%{background-position:96% 0%}
+}
+@-moz-keyframes AnimationName {
+    0%{background-position:96% 0%}
+    50%{background-position:5% 100%}
+    100%{background-position:96% 0%}
+}
+@keyframes AnimationName {
+    0%{background-position:96% 0%}
+    50%{background-position:5% 100%}
+    100%{background-position:96% 0%}
+}
 
 section.board {
     display: grid;
@@ -54,9 +69,14 @@ div {
     font-size: 8vmin;
     text-align: center;
     vertical-align: middle;
-    background-image: radial-gradient(circle, #688db0, #6c92ba, #7198c4, #769dcf, #7ca2d9, #77ace4, #71b5ee, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
+    background: linear-gradient(89deg, #688db0, #769dcf, #69bffe, #5ffbf1);
+    background-size: 800% 800%;
+
+    -webkit-animation: AnimationName 6s ease infinite;
+    -moz-animation: AnimationName 6s ease infinite;
+    animation: AnimationName 6s ease infinite;
     box-shadow: 0px 0px 40px 20px #0ff;
-    color: rgb(161, 20, 20);
+    color: rgb(20, 34, 161);
     border: 1px;
     border-radius: 50px;
     margin-bottom: -20px;
@@ -91,7 +111,9 @@ button{
 nav {
     display: flex;
     height: 60px;
-    background-color: #5b82a5;
+    background: linear-gradient(45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
     flex-direction: row;
     justify-content: center;
     align-items: center;
@@ -99,9 +121,17 @@ nav {
     grid-area: nav;
 }
 
+#music {
+    background-color: black;
+}
 
 .dark-mode {
-    background-color: rgb(29, 8, 8);
+    background: linear-gradient(46deg, #c3c2dd, #344f72, #244e6c, #000000);
+    background-size: 800% 800%;
+
+    -webkit-animation: AnimationName 6s ease infinite;
+    -moz-animation: AnimationName 6s ease infinite;
+    animation: AnimationName 6s ease infinite;
     color: rgb(156, 233, 162);
 }
 
