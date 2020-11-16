@@ -1,9 +1,4 @@
 /*-------------------------------- Constants --------------------------------*/
-const colors = {
-    '': 'empty',
-     'O': 'player1',
-     'X': 'player2'
-};
 
 const winningCombinations = [
                 ['0', '1', '2'], ['0', '4', '8'], ['0', '3', '6'], ['3', '4', '5'],
@@ -28,6 +23,7 @@ let messages = document.querySelector('h2');
 // This is where you should put the event listener
 // for a mouse-click
 document.getElementById('board').addEventListener('click', handleTurn);
+document.getElementById('restart-button').addEventListener('click', start);
 
 /*-------------------------------- Functions --------------------------------*/
 
@@ -38,13 +34,13 @@ document.getElementById('board').addEventListener('click', handleTurn);
 // Where you set your initial state, setting up
 // what the board will look like upon loading
 
-function init() {
+function start() {
     board = ['', '', '',
              '', '', '',
              '', '', '' ];
         render();
 };
-    init();
+    start();
 
 // On-Click function:
 // Set up what happens when one of the elements
@@ -73,62 +69,24 @@ function handleTurn(event) {
 // a winner and changes the state of the winner
 // variable if so
 
-// function winnerCheck() {
-//     winningCombinations.forEach((combination, i) => {
-
         function winnerCheck() {
             let winner = null;
             winningCombinations.forEach(function(combo, index) {
-                if (board[combo[0]] && board[combo[0]] === board[combo[1]] && board[combo[0]] === board[combo[2]]) winner = board[combo[0]];
+                if (board[combo[0]] && board[combo[0]] === board[combo[1]] &&
+                    board[combo[0]] === board[combo[2]]) {
+                    winner = board[combo[0]];
+                    };
               });
-              return winner;
+                if (winner) {
+                    return winner;
+                }
+                else if (board.includes('')) {
+                    return null;
+                }
+                else {
+                    return 'Tie';
             };
-
-            ////// FAILED LOGIC ATTEMPTS /////
-    //     if (board[combo[0]] && board[combo[0]] === board[combo[1]]
-    //         && board[combo[0]] === board[combo[2]]) {
-    //         winner = board[combo[0]];
-    //         };
-    //         messages.textContent = winner ? `${winner} wins the game!` : `It's ${turn}'s turn!`;
-    //         if (winner) {
-    //             return winner
-    //           } else if (board.includes('')) {
-    //             return '' // if there's an empty space, return null (no winner yet)
-    //           } else {
-    //             return 'Tie' // no winner and no empty spaces? That's a tie!
-    //           }
-    // });
-    // return winner;
-
-
-//     if (win = board[0] === board[1] && board[1] === board[2])
-//         return board[0];
-//     else if (win = board[3] === board[4] && board[4] === board[5])
-//         return board[3];
-//     else if (win = board[6] === board[7] && board[7] === board[8])
-//         return board[6];
-//     else if (win = board[0] === board[3] && board[3] === board[6])
-//         return board[0];
-//     else if (win = board[1] === board[4] && board[4] === board[7])
-//         return board[1];
-//     else if (win = board[2] === board[5] && board[5] === board[8])
-//         return board[2];
-//     else if (win = board[0] === board[4] && board[4] === board[8])
-//         return board[0];
-//     else if (win = board[2] === board[4] && board[4] === board[6])
-//         return board[2];
-//     else if (win = (board[1] === 'X' || board[1] === 'O') && (board[2] === 'X' || board[2] === 'O') &&
-//              (board[3] === 'X' || board[3] === 'O') && (board[4] === 'X' || board[4] === 'O') &&
-//              (board[5] === 'X' || board[5] === 'O') && (board[6] === 'X' || board[6] === 'O') &&
-//              (board[7] === 'X' || board[7] === 'O') && (board[8] === 'X' || board[8] === 'O') &&
-//              (board[9] === 'X' || board[9] === 'O')) {
-//              console.log('hi')
-//         return null;
-//              }
-//     else
-//         return 'Tie';
-// })
-// };
+        };
 
 
 // Render function:
@@ -140,9 +98,13 @@ function render() {
         squares[index].textContent = mark;
     });
 
-    if (messages.textContent = win) {
-        `${win} wins the game!`
-    } else {
-        `It's ${turn}'s turn!`;
+    if ( win === 'Tie' ) {
+        messages.textContent = `Cat's game! Try again!`
     }
+    else if (win) {
+        messages.textContent = `${win} wins the game!`
+    }
+    else {
+        messages.textContent = `It's ${turn}'s turn!`
+    };
 };
