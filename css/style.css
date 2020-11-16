@@ -14,7 +14,7 @@ section.board {
     display: grid;
     grid-template-rows: repeat(3, 10vmin);
     grid-template-columns: repeat(3, 10vmin);
-    grid-gap: 0vmin;
+    grid-gap: 10vmin;
 }
 
 div {

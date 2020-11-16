@@ -1,32 +1,27 @@
 /*-------------------------------- Constants --------------------------------*/
 const colors = {
-    '0': 'empty',
-     '1': 'player1',
-     '-1': 'player2'
+    '': 'empty',
+     'O': 'player1',
+     'X': 'player2'
 };
-
-// const spaces = ['0', '1', '2',
-//                 '3', '4', '5',
-//                 '6', '7', '8'];
 
 const winningCombinations = [
                 ['0', '1', '2'], ['0', '4', '8'], ['0', '3', '6'], ['3', '4', '5'],
                 ['6', '7', '8'], ['1', '4', '7'], ['2', '5', '8'], ['2', '4', '6']
 ];
 
-
 /*---------------------------- Variables (state) ----------------------------*/
 
 // Variables might include (board/turn/winner)
 let board;
 let turn = 'X';
-let winner;
+let win;
 
 
 /*------------------------ Cached Element References ------------------------*/
 // You might choose to put your game status here
 let squares =  Array.from(document.querySelectorAll('#board div'));
-let messages = document.getElementById('message');
+let messages = document.querySelector('h2');
 
 /*----------------------------- Event Listeners -----------------------------*/
 
@@ -56,18 +51,21 @@ function init() {
 // is clicked
 function handleTurn(event) {
     let idx = squares.findIndex((square) => {
-    return square === event.target;
+      return square === event.target;
     });
+    if (board[idx]) {
+        return
+    };
     board[idx] = turn;
-    console.log(board);
-
-    if (turn === 'X') {
+    if(turn === 'X') {
         turn = 'O'
-    } else {
-        turn = 'X'};
-    winnerCheck();
+    }
+    else {turn = 'X'};
+
+    win = winnerCheck();
+
     render();
-};
+    };
 
 
 // Check winner function:
@@ -75,39 +73,62 @@ function handleTurn(event) {
 // a winner and changes the state of the winner
 // variable if so
 
-function winnerCheck() {
-    for(let i = 0; i < winningCombinations.length; i++){
-    if (board[0] == board[1] && board[1] == board[2])
-        return 1;
-    else if (board[3] == board[4] && board[4] == board[5])
-        return 1;
-    else if (board[6] == board[7] && board[7] == board[8])
-        return 1;
-    else if (board[0] == board[3] && board[3] == board[6])
-        return 1;
-    else if (board[1] == board[4] && board[4] == board[7])
-        return 1;
-    else if (board[2] == board[5] && board[5] == board[8])
-        return 1;
-    else if (board[0] == board[4] && board[4] == board[8])
-        return 1;
-    else if (board[2] == board[4] && board[4] == board[6])
-        return 1;
-    else if ((board[1] != 'X' || board[1] == 'O') &&
-             (board[2] != 'X' || board[2] == 'O') &&
-             (board[3] != 'X' || board[3] == 'O') &&
-             (board[4] != 'X' || board[4] == 'O') &&
-             (board[5] != 'X' || board[5] == 'O') &&
-             (board[6] != 'X' || board[6] == 'O') &&
-             (board[7] != 'X' || board[7] == 'O') &&
-             (board[8] != 'X' || board[8] == 'O') &&
-             (board[9] != 'X' || board[9] == 'O')) {
-             console.log('hi')
-        return 0;}
+// function winnerCheck() {
+//     winningCombinations.forEach((combination, i) => {
 
-    else
-        return -1;
-}}
+        function winnerCheck() {
+            let winner = null;
+            winningCombinations.forEach(function(combo, index) {
+                if (board[combo[0]] && board[combo[0]] === board[combo[1]] && board[combo[0]] === board[combo[2]]) winner = board[combo[0]];
+              });
+              return winner;
+            };
+
+            ////// FAILED LOGIC ATTEMPTS /////
+    //     if (board[combo[0]] && board[combo[0]] === board[combo[1]]
+    //         && board[combo[0]] === board[combo[2]]) {
+    //         winner = board[combo[0]];
+    //         };
+    //         messages.textContent = winner ? `${winner} wins the game!` : `It's ${turn}'s turn!`;
+    //         if (winner) {
+    //             return winner
+    //           } else if (board.includes('')) {
+    //             return '' // if there's an empty space, return null (no winner yet)
+    //           } else {
+    //             return 'Tie' // no winner and no empty spaces? That's a tie!
+    //           }
+    // });
+    // return winner;
+
+
+//     if (win = board[0] === board[1] && board[1] === board[2])
+//         return board[0];
+//     else if (win = board[3] === board[4] && board[4] === board[5])
+//         return board[3];
+//     else if (win = board[6] === board[7] && board[7] === board[8])
+//         return board[6];
+//     else if (win = board[0] === board[3] && board[3] === board[6])
+//         return board[0];
+//     else if (win = board[1] === board[4] && board[4] === board[7])
+//         return board[1];
+//     else if (win = board[2] === board[5] && board[5] === board[8])
+//         return board[2];
+//     else if (win = board[0] === board[4] && board[4] === board[8])
+//         return board[0];
+//     else if (win = board[2] === board[4] && board[4] === board[6])
+//         return board[2];
+//     else if (win = (board[1] === 'X' || board[1] === 'O') && (board[2] === 'X' || board[2] === 'O') &&
+//              (board[3] === 'X' || board[3] === 'O') && (board[4] === 'X' || board[4] === 'O') &&
+//              (board[5] === 'X' || board[5] === 'O') && (board[6] === 'X' || board[6] === 'O') &&
+//              (board[7] === 'X' || board[7] === 'O') && (board[8] === 'X' || board[8] === 'O') &&
+//              (board[9] === 'X' || board[9] === 'O')) {
+//              console.log('hi')
+//         return null;
+//              }
+//     else
+//         return 'Tie';
+// })
+// };
 
 
 // Render function:
@@ -116,7 +137,12 @@ function winnerCheck() {
 // either X or O depending on whose turn it is
 function render() {
     board.forEach((mark, index) => {
-    squares[index].textContent = mark;
+        squares[index].textContent = mark;
     });
-    messages.textContent = `Time for ${turn} to play`;
+
+    if (messages.textContent = win) {
+        `${win} wins the game!`
+    } else {
+        `It's ${turn}'s turn!`;
+    }
 };
