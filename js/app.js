@@ -25,6 +25,10 @@ let messages = document.querySelector('h2');
 document.getElementById('board').addEventListener('click', handleTurn);
 document.getElementById('restart-button').addEventListener('click', start);
 
+function darkMode() {
+    let element = document.body;
+    element.classList.toggle("dark-mode");
+  }
 /*-------------------------------- Functions --------------------------------*/
 
 
@@ -35,6 +39,7 @@ document.getElementById('restart-button').addEventListener('click', start);
 // what the board will look like upon loading
 
 function start() {
+    messages.textContent = 'Welcome!'
     board = ['', '', '',
              '', '', '',
              '', '', '' ];
@@ -61,7 +66,7 @@ function handleTurn(event) {
     win = winnerCheck();
 
     render();
-    };
+};
 
 
 // Check winner function:
@@ -69,30 +74,36 @@ function handleTurn(event) {
 // a winner and changes the state of the winner
 // variable if so
 
-        function winnerCheck() {
-            let winner = null;
-            winningCombinations.forEach(function(combo, index) {
-                if (board[combo[0]] && board[combo[0]] === board[combo[1]] &&
-                    board[combo[0]] === board[combo[2]]) {
-                    winner = board[combo[0]];
-                    };
-              });
-                if (winner) {
-                    return winner;
-                }
-                else if (board.includes('')) {
-                    return null;
-                }
-                else {
-                    return 'Tie';
+function winnerCheck() {
+    let winner = null;
+    winningCombinations.forEach(function(combo, index) {
+        if (board[combo[0]] && board[combo[0]] === board[combo[1]] &&
+            board[combo[0]] === board[combo[2]]) {
+            winner = board[combo[0]];
             };
-        };
+      });
+        if (winner) {
+            return winner;
+        }
+        else if (board.includes('')) {
+            return null;
+        }
+        else {
+            return 'Tie';
+    };
+};
 
 
 // Render function:
 // Displays the current state of the board
 // on the page, updating the elements to reflect
 // either X or O depending on whose turn it is
+
+// var confettiElement = document.getElementById('my-canvas');
+// var confettiSettings = { target: confettiElement };
+// var confetti = new ConfettiGenerator(confettiSettings);
+// confetti.render();
+
 function render() {
     board.forEach((mark, index) => {
         squares[index].textContent = mark;
@@ -103,6 +114,7 @@ function render() {
     }
     else if (win) {
         messages.textContent = `${win} wins the game!`
+
     }
     else {
         messages.textContent = `It's ${turn}'s turn!`

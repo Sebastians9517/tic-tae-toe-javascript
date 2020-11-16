@@ -3,11 +3,38 @@
 }
 
 body {
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+
     height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    text-align: center;
+    display: grid;
+    height: 100vh;
+    font-size: 30px;
+    font-weight: bold;
+    grid-template-areas:
+    "nav nav nav"
+    "aside main main"
+    "footer footer footer";
+    grid-template-columns: 1fr 2fr 2fr;
+    grid-template-rows: auto 1fr auto;
+    gap: 5px;
+}
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
 }
 
 section.board {
@@ -17,15 +44,75 @@ section.board {
     grid-gap: 10vmin;
 }
 
+h1 {
+    margin-left: 50px;
+
+}
+
 div {
-    border: 3px solid black;
+    border: 3px solid rgb(6, 21, 219);
     font-size: 8vmin;
     text-align: center;
     vertical-align: middle;
+    background-image: radial-gradient(circle, #688db0, #6c92ba, #7198c4, #769dcf, #7ca2d9, #77ace4, #71b5ee, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
+    box-shadow: 0px 0px 40px 20px #0ff;
+    color: rgb(161, 20, 20);
+    border: 1px;
+    border-radius: 50px;
+    margin-bottom: -20px;
+
 }
 
 #restartButton {
     display: flex;
     align-content: center;
     justify-content: center;
+    margin-top: 20 px;
 }
+
+ .btn {
+    font-size: 3rem;
+    margin: 10px 30px;
+}
+
+
+button{
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    cursor: pointer;
+    border: 1px solid #555;
+    text-align: center;
+    padding: 5px;
+    margin-left: 8px;
+
+}
+
+nav {
+    display: flex;
+    height: 60px;
+    background-color: #5b82a5;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-bottom: white solid 2px;
+    grid-area: nav;
+}
+
+
+.dark-mode {
+    background-color: rgb(29, 8, 8);
+    color: rgb(156, 233, 162);
+}
+
+.dark-mode div {
+    color: brown;
+}
+
+.dark-mode nav {
+    background-color: rgb(37, 31, 75);
+}
+
+/* div {
+    z-index: -10;
+} */

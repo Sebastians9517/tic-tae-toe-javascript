@@ -1,29 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="css/style.css">
-    <script defer src="js/app.js"></script>
-    <title>Tic Tac Toe</title>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous"/>
+        <script defer src="js/app.js"></script>
+        <script src="node_modules/confetti-js/dist/index.min.js"></script>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Goldman:wght@700&display=swap" rel="stylesheet">
+        <title>Tic Tac Toe</title>
 </head>
 <body>
-    <h1>Tic-Tac-Toe</h1>
-    <h2 id="message">Message</h2>
 
-    <section id="board" class="board">
-        <div id="sq0" class="square"></div>
-        <div id="sq1" class="square"></div>
-        <div id="sq2" class="square"></div>
-        <div id="sq3" class="square"></div>
-        <div id="sq4" class="square"></div>
-        <div id="sq5" class="square"></div>
-        <div id="sq6" class="square"></div>
-        <div id="sq7" class="square"></div>
-        <div id="sq8" class="square"></div>
-    </section>
+    <nav>
+        <button id="restart-button" class="btn btn-danger">Restart</button>
+        <button onclick="darkMode()" class="btn btn-warning" background-color: "blue">Toggle dark mode</button>
+    </nav>
+    </div>
+        <h1>Tic-Tac-Toe</h1>
+        <h2 id="message">Message</h2>
 
-    <button id="restart-button">Restart</button>
+        <section id="board" class="board">
+          <div id="sq0" class="square"></div>
+          <div id="sq1" class="square"></div>
+          <div id="sq2" class="square"></div>
+          <div id="sq3" class="square"></div>
+          <div id="sq4" class="square"></div>
+          <div id="sq5" class="square"></div>
+          <div id="sq6" class="square"></div>
+          <div id="sq7" class="square"></div>
+          <div id="sq8" class="square"></div>
+        </section>
+
 </body>
 </html>
